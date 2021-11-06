@@ -1,0 +1,53 @@
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: true
+
+####################################################################################################
+# spring
+####################################################################################################
+spring:
+  ###################################################################################################
+  # spring: Database and JPA settings
+  ###################################################################################################
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pokerplanning.management
+    username: vacos
+    password: vacos
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      # whether hibernate should generate the tables for us. Possible values: none, update, create
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: true
+        use_sql_comments: false
+        #for the following see https://github.com/spring-projects/spring-boot/issues/12007
+        jdbc:
+          lob:
+            non_contextual_creation: true
+          time_zone: UTC
+
+  ###################################################################################################
+  # spring:Flyway
+  ###################################################################################################
+  flyway:
+    enabled: true
+    # We expect an empty database in the beginning.
+    baseline-on-migrate: false
+    encoding: UTF-8
+    # We use out-of order because different modules are developed independently using timestamps
+    # for flyway files. So we cannot guarantee an order.
+    out-of-order: true
+    table: _schema_version_
+    locations: classpath:db/migration/postgresql
+
+loizenai:
+  app:
+    jwtSecret: jwtLoizenai.comSecretKey
+    jwtExpiration: 86400
