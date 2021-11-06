@@ -9,7 +9,6 @@ CREATE SEQUENCE public.roles_id_seq
     MAXVALUE 1111111111111
     CACHE 1;
 
-ALTER SEQUENCE public.roles_id_seq;
 
 -- Table: public.roles
 
@@ -30,7 +29,6 @@ CREATE SEQUENCE public.users_id_seq
     MAXVALUE 1111111111111
     CACHE 1;
 
-ALTER SEQUENCE public.users_id_seq ;
 
  -- Table: public.users
 
@@ -78,7 +76,7 @@ CREATE SEQUENCE public.ticket_id_seq
     MAXVALUE 1111111111111
     CACHE 1;
 
-ALTER SEQUENCE public.ticket_id_seq ;
+
 
 -- Table: public.ticket_points
 
