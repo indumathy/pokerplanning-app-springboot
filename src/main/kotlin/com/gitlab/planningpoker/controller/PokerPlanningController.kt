@@ -36,37 +36,37 @@ class PokerPlanningController(val userRepository: UserRepository) {
                 this.id = 1
                 this.iid = 11111
                 this.title = "sample title1 - this is the sample tile for ticket 1"
-                this.labels = listOf("IN_PROGRESS", "IMP")
+                this.labels = listOf("IN_PROGRESS", " IMP")
             },
             IssuesInEstimationDto().apply {
                 this.id = 2
                 this.iid = 22222
                 this.title = "sample title2 -->> his is the sample tile for ticket 2"
-                this.labels = listOf("IMP", "TECH")
+                this.labels = listOf("IMP", " TECH")
             },
             IssuesInEstimationDto().apply {
                 this.id = 3
                 this.iid = 33333
                 this.title = "sample title--3 -->> his is the sample tile for ticket 3"
-                this.labels = listOf("BUG", "LOW")
+                this.labels = listOf("BUG", " LOW")
             },
                     IssuesInEstimationDto().apply {
                 this.id = 4
                 this.iid = 44444
                 this.title = " this is the sample tile for ticket 444"
-                this.labels = listOf("IN_PROGRESS", "IMP")
+                this.labels = listOf("IN_PROGRESS", " IMP")
             },
             IssuesInEstimationDto().apply {
                 this.id = 5
                 this.iid = 25555
                 this.title = "  this is the sample tile for ticket 555"
-                this.labels = listOf("IMP", "TECH")
+                this.labels = listOf("IMP", " TECH")
             },
             IssuesInEstimationDto().apply {
                 this.id = 6
                 this.iid = 66633
                 this.title = "sample title--3 -->> his is the sample tile for ticket 666"
-                this.labels = listOf("BUG", "LOW")
+                this.labels = listOf("BUG", " LOW")
             }
 
         ).toMutableList()
