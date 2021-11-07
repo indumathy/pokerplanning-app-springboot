@@ -204,6 +204,15 @@ class PokerPlanningController(val userRepository: UserRepository) {
         return ResponseEntity.ok(true)
     }
 
+    @GetMapping("/pokerplanning/resetallvotes")
+    fun resetAllVotes(): ResponseEntity<Boolean> {
+
+        val users = userRepository.findAll()
+        users.forEach { it.votedPoint = null }
+        userRepository.saveAll(users)
+        return ResponseEntity.ok(true)
+    }
+
     @GetMapping("/pokerplanning/currentuser")
     fun getCurrentUser(): UserDto {
         println("going to execute gitlab api..")
