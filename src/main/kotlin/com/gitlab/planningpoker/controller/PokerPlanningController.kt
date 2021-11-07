@@ -32,23 +32,41 @@ class PokerPlanningController(val userRepository: UserRepository) {
 
 
         val Valueis1 = listOf<IssuesInEstimationDto>(
-        IssuesInEstimationDto().apply {
-            this.id = 1
-            this.iid = 11111
-            this.title = "sample title1"
-            this.labels = listOf("label1" ,"label2")
-        },
+            IssuesInEstimationDto().apply {
+                this.id = 1
+                this.iid = 11111
+                this.title = "sample title1 - this is the sample tile for ticket 1"
+                this.labels = listOf("IN_PROGRESS", "IMP")
+            },
             IssuesInEstimationDto().apply {
                 this.id = 2
                 this.iid = 22222
-                this.title = "sample title--2"
-                this.labels = listOf("label1" ,"label2")
+                this.title = "sample title2 -->> his is the sample tile for ticket 2"
+                this.labels = listOf("IMP", "TECH")
             },
             IssuesInEstimationDto().apply {
                 this.id = 3
                 this.iid = 33333
-                this.title = "sample title--3"
-                this.labels = listOf("label1" ,"label2")
+                this.title = "sample title--3 -->> his is the sample tile for ticket 3"
+                this.labels = listOf("BUG", "LOW")
+            },
+                    IssuesInEstimationDto().apply {
+                this.id = 4
+                this.iid = 44444
+                this.title = " this is the sample tile for ticket 444"
+                this.labels = listOf("IN_PROGRESS", "IMP")
+            },
+            IssuesInEstimationDto().apply {
+                this.id = 5
+                this.iid = 25555
+                this.title = "  this is the sample tile for ticket 555"
+                this.labels = listOf("IMP", "TECH")
+            },
+            IssuesInEstimationDto().apply {
+                this.id = 6
+                this.iid = 66633
+                this.title = "sample title--3 -->> his is the sample tile for ticket 666"
+                this.labels = listOf("BUG", "LOW")
             }
 
         ).toMutableList()
@@ -56,7 +74,7 @@ class PokerPlanningController(val userRepository: UserRepository) {
     }
 
     @PutMapping("/pokerplanning/gitlab/assignAsModerator/{username}")
-    fun assignAsModerator(@PathVariable  username: String): ResponseEntity<Boolean> {
+    fun assignAsModerator(@PathVariable username: String): ResponseEntity<Boolean> {
         println("...assignAsModerator......................id.........................." + username)
         val users = userRepository.findAll()
         users?.map {
@@ -104,7 +122,6 @@ class PokerPlanningController(val userRepository: UserRepository) {
 
         return dto
     }
-
 
 
     @GetMapping("/pokerplanning/gitlab/votedusercounts")
@@ -173,15 +190,15 @@ class PokerPlanningController(val userRepository: UserRepository) {
     @GetMapping("/pokerplanning/vote")
     fun updateUserVote(@RequestParam ticketNumber: String, @RequestParam vote: String): ResponseEntity<Boolean> {
 
-      val peint=  SecurityContextHolder.getContext().authentication.principal as UserDetails
-        println(".......................username....."+peint.username+"....."+vote)
+        val peint = SecurityContextHolder.getContext().authentication.principal as UserDetails
+        println(".......................username....." + peint.username + "....." + vote)
         val authentication = SecurityContextHolder.getContext().authentication
 
         val userDetails = authentication.principal as UserDetails
         val user = userRepository.findByUsername(userDetails.username)?.orElseThrow {
             IllegalArgumentException("Cannot find user ${userDetails.username}")
         }
-        println(".......................username....."+user.username+"....."+vote)
+        println(".......................username....." + user.username + "....." + vote)
         user.votedPoint = vote
         userRepository.saveAndFlush(user)
         return ResponseEntity.ok(true)
