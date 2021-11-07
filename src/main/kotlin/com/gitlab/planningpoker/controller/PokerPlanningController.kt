@@ -29,41 +29,30 @@ class PokerPlanningController(val userRepository: UserRepository) {
     @Throws(GitLabApiException::class)
     fun getGitData(): MutableList<IssuesInEstimationDto> {
         println("going to execute gitlab api..")
-        val gitLabApi = GitLabApi.oauth2Login("https://gitlab2.vacos.de/", "indumathy.balaraman@vacos.de", "Rohit@2011")
 
-        gitLabApi.issuesApi.getIssues(50).forEach { println("....eeeeeeee...." + it.size) }
-        val api = gitLabApi.boardsApi
 
-        val board = api.getBoard(30, 10)
-
-        val labelInEstimation = board.lists.forEach {
-            //     println("...label. mmmm...." + it.label.name)
-        }
-        val filter = IssueFilter().apply {
-            scope = Constants.IssueScope.ALL
-            labels = mutableListOf("process::In Estimation")
-            state = Constants.IssueState.OPENED
-        }
-        val allIssue = gitLabApi.issuesApi.getIssues(30, filter)
-        //println(".....issues.issues..............222222222222........." + allIssue.size + "..." + gitLabApi.projectApi.getProject(30).name)
-
-        val Valueis = allIssue.map { it ->
-            var issue = IssuesInEstimationDto().apply {
-                this.id = it.id
-                this.iid = it.iid
-                this.title = it.title
-                this.labels = it.labels
+        val Valueis1 = listOf<IssuesInEstimationDto>(
+        IssuesInEstimationDto().apply {
+            this.id = 1
+            this.iid = 11111
+            this.title = "sample title1"
+            this.labels = listOf("label1" ,"label2")
+        },
+            IssuesInEstimationDto().apply {
+                this.id = 2
+                this.iid = 22222
+                this.title = "sample title--2"
+                this.labels = listOf("label1" ,"label2")
+            },
+            IssuesInEstimationDto().apply {
+                this.id = 3
+                this.iid = 33333
+                this.title = "sample title--3"
+                this.labels = listOf("label1" ,"label2")
             }
 
-            //   println(".....all issue...>..." + it.actualId + "... ." + it.iid + "..." + it.labels)
-            issue
-        }.toMutableList()
-
-
-        val currentUser = gitLabApi.userApi.currentUser
-
-        System.out.println(currentUser.username)
-        return Valueis
+        ).toMutableList()
+        return Valueis1
     }
 
     @PutMapping("/pokerplanning/gitlab/assignAsModerator/{username}")
