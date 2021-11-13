@@ -24,6 +24,10 @@ class User {
     @Column(name = "voted_point")
     var votedPoint: String? = null
 
+    @Column(name = "show_vote")
+    var showVote: Boolean? = null
+
+
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "user_roles",

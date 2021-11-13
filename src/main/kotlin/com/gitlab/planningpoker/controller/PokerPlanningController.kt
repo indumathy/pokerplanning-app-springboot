@@ -50,7 +50,7 @@ class PokerPlanningController(val userRepository: UserRepository) {
                 this.title = "sample title--3 -->> his is the sample tile for ticket 3"
                 this.labels = listOf("BUG", " LOW")
             },
-                    IssuesInEstimationDto().apply {
+            IssuesInEstimationDto().apply {
                 this.id = 4
                 this.iid = 44444
                 this.title = " this is the sample tile for ticket 444"
@@ -208,7 +208,19 @@ class PokerPlanningController(val userRepository: UserRepository) {
     fun resetAllVotes(): ResponseEntity<Boolean> {
 
         val users = userRepository.findAll()
-        users.forEach { it.votedPoint = null }
+        users.forEach {
+            it.votedPoint = null
+            it.showVote = false
+        }
+        userRepository.saveAll(users)
+        return ResponseEntity.ok(true)
+    }
+
+    @GetMapping("/pokerplanning/showallvotes")
+    fun showAllVotes(): ResponseEntity<Boolean> {
+
+        val users = userRepository.findAll()
+        users.forEach {  it.showVote = true }
         userRepository.saveAll(users)
         return ResponseEntity.ok(true)
     }
