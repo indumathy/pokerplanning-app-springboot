@@ -113,7 +113,8 @@ class PokerPlanningController(val userRepository: UserRepository) {
                 userName = it?.username,
                 isModerator = it?.isModerator,
                 voted = !(it?.votedPoint.isNullOrEmpty()),
-                votedPoint = it?.votedPoint
+                votedPoint = it?.votedPoint,
+                showVotedPoint = it?.showVote?:false
             )
         }
             ?.toMutableList() ?: mutableListOf()
@@ -241,7 +242,8 @@ class PokerPlanningController(val userRepository: UserRepository) {
             userName = user?.username,
             isModerator = user?.isModerator,
             voted = !(user?.votedPoint.isNullOrEmpty()),
-            votedPoint = user?.votedPoint
+            votedPoint = user?.votedPoint,
+            showVotedPoint = user?.showVote?:false
         )
     }
 }
