@@ -15,9 +15,9 @@ spring:
     # url: jdbc:postgresql://localhost:5432/pokerplanning.management
     # username: vacos
     # password: vacos
-    url: jdbc:postgresql://ec2-54-73-152-36.eu-west-1.compute.amazonaws.com:5432/d8pkbqrrkmelpu
-    username: ubkjenxqdpxjci
-    password: edb275ff02158b066c0cff124face6635b468373c139afd2d28b38d8f98dc8c6
+    url:  
+    username: s
+    password: 
     driver-class-name: org.postgresql.Driver
   jpa:
     database: POSTGRESQL
